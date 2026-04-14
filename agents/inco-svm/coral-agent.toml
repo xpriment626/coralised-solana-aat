@@ -1,0 +1,23 @@
+edition = 3
+
+[agent]
+name = "solana-inco-svm"
+version = "0.1.0"
+description = "Inco Lightning confidential computing — encrypted balances, private transfers, and attested decryption on Solana."
+
+[agent.license]
+type = "spdx"
+expression = "MIT"
+
+[runtimes.executable]
+path = "bash"
+arguments = ["startup.sh"]
+transport = "streamable_http"
+
+[options.OPENAI_API_KEY]
+type = "string"
+required = true
+secret = true
+
+[options.OPENAI_API_KEY.display]
+description = "OpenAI API key for gpt-5.4-mini"

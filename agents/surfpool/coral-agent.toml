@@ -1,0 +1,23 @@
+edition = 3
+
+[agent]
+name = "solana-surfpool"
+version = "0.1.0"
+description = "Surfpool testing environment — drop-in solana-test-validator replacement with mainnet forking, cheatcodes, and Infrastructure as Code."
+
+[agent.license]
+type = "spdx"
+expression = "MIT"
+
+[runtimes.executable]
+path = "bash"
+arguments = ["startup.sh"]
+transport = "streamable_http"
+
+[options.OPENAI_API_KEY]
+type = "string"
+required = true
+secret = true
+
+[options.OPENAI_API_KEY.display]
+description = "OpenAI API key for gpt-5.4-mini"
