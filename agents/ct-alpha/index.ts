@@ -29,4 +29,5 @@ You are a Coralised agent running inside a CoralOS session. You communicate with
 runCoralAgent({
   name: "solana-ct-alpha",
   systemPrompt: SYSTEM_PROMPT,
+  skillUrl: "https://raw.githubusercontent.com/sendaifun/skills/main/skills/ct-alpha/SKILL.md",
 });

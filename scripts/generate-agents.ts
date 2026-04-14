@@ -41,13 +41,19 @@ interface AgentDef {
   name: string;
   description: string;
   domain: string;
+  /** Skill name in sendaifun/skills repo (for SKILL.md fetch). Omit if no matching skill. */
+  skillSlug?: string;
 }
+
+const SKILL_BASE =
+  "https://raw.githubusercontent.com/sendaifun/skills/main/skills";
 
 const agents: AgentDef[] = [
   // ── DeFi Protocols ──
   {
     dir: "jupiter-swap",
     name: "solana-jupiter-swap",
+    skillSlug: "jupiter",
     description:
       "Token swap operations via Jupiter — Ultra Swap API, limit orders, DCA, route optimisation, and all Jupiter endpoints on Solana.",
     domain:
@@ -56,6 +62,7 @@ const agents: AgentDef[] = [
   {
     dir: "raydium",
     name: "solana-raydium",
+    skillSlug: "raydium",
     description:
       "Raydium AMM and CLMM pool operations — swaps, liquidity provision, pool creation, LaunchLab token launches, and farming on Solana.",
     domain:
@@ -64,6 +71,7 @@ const agents: AgentDef[] = [
   {
     dir: "orca",
     name: "solana-orca",
+    skillSlug: "orca",
     description:
       "Orca Whirlpools concentrated liquidity operations — swaps, position management, pool creation, and fee harvesting on Solana and Eclipse.",
     domain:
@@ -72,6 +80,7 @@ const agents: AgentDef[] = [
   {
     dir: "meteora",
     name: "solana-meteora",
+    skillSlug: "meteora",
     description:
       "Meteora DeFi operations — DLMM pools, DAMM, dynamic bonding curves, Alpha Vaults, token launches, and zap operations on Solana.",
     domain:
@@ -80,6 +89,7 @@ const agents: AgentDef[] = [
   {
     dir: "pumpfun",
     name: "solana-pumpfun",
+    skillSlug: "pumpfun",
     description:
       "PumpFun token launch operations — bonding curve creation, buy/sell on curves, PumpSwap AMM, creator fees, and SDK integration on Solana.",
     domain:
@@ -88,6 +98,7 @@ const agents: AgentDef[] = [
   {
     dir: "kamino",
     name: "solana-kamino",
+    skillSlug: "kamino",
     description:
       "Kamino Finance operations — lending, borrowing, automated liquidity strategies, leverage trading, and oracle aggregation on Solana.",
     domain:
@@ -96,6 +107,7 @@ const agents: AgentDef[] = [
   {
     dir: "marginfi",
     name: "solana-marginfi",
+    skillSlug: "marginfi",
     description:
       "MarginFi lending operations — deposits, borrows, repayments, flash loans, leveraged positions (looping) on Solana.",
     domain:
@@ -104,6 +116,7 @@ const agents: AgentDef[] = [
   {
     dir: "sanctum",
     name: "solana-sanctum",
+    skillSlug: "sanctum",
     description:
       "Sanctum liquid staking operations — LST swaps, SOL staking, Infinity pool, and liquidity infrastructure on Solana.",
     domain:
@@ -112,6 +125,7 @@ const agents: AgentDef[] = [
   {
     dir: "lulo",
     name: "solana-lulo",
+    skillSlug: "lulo",
     description:
       "Lulo lending aggregator — automated yield optimisation across Kamino, Drift, MarginFi, and Jupiter on Solana.",
     domain:
@@ -120,6 +134,7 @@ const agents: AgentDef[] = [
   {
     dir: "lavarage",
     name: "solana-lavarage",
+    skillSlug: "lavarage",
     description:
       "Lavarage leveraged trading — long/short positions on crypto, memecoins, RWAs, and commodities with up to 12x leverage on Solana.",
     domain:
@@ -128,6 +143,7 @@ const agents: AgentDef[] = [
   {
     dir: "ranger-finance",
     name: "solana-ranger-finance",
+    skillSlug: "ranger-finance",
     description:
       "Ranger Finance perps aggregation — smart order routing across Drift, Flash, Adrena, and Jupiter perps on Solana.",
     domain:
@@ -136,6 +152,7 @@ const agents: AgentDef[] = [
   {
     dir: "glam",
     name: "solana-glam",
+    skillSlug: "glam",
     description:
       "GLAM Protocol vault management — tokenised vaults, share classes, DeFi strategies, treasury operations, and access control on Solana.",
     domain:
@@ -146,6 +163,7 @@ const agents: AgentDef[] = [
   {
     dir: "helius",
     name: "solana-helius",
+    skillSlug: "helius",
     description:
       "Helius infrastructure — RPC, DAS API for NFTs/assets, real-time WebSocket/Laserstream streaming, webhooks, priority fees, and wallet analysis on Solana.",
     domain:
@@ -154,6 +172,7 @@ const agents: AgentDef[] = [
   {
     dir: "quicknode",
     name: "solana-quicknode",
+    skillSlug: "quicknode",
     description:
       "QuickNode infrastructure — RPC endpoints, DAS API, Yellowstone gRPC streaming, Priority Fee API, Streams, Webhooks, and Metis Jupiter integration.",
     domain:
@@ -162,6 +181,7 @@ const agents: AgentDef[] = [
   {
     dir: "carbium",
     name: "solana-carbium",
+    skillSlug: "carbium",
     description:
       "Carbium infrastructure — bare-metal RPC, gRPC streaming (~22ms), DEX aggregation via CQ1 engine, gasless swaps, and MEV-protected execution.",
     domain:
@@ -172,6 +192,7 @@ const agents: AgentDef[] = [
   {
     dir: "pyth",
     name: "solana-pyth",
+    skillSlug: "pyth",
     description:
       "Pyth Network oracle integration — real-time price feeds, confidence intervals, EMA prices, on-chain CPI, and streaming updates for Solana DeFi.",
     domain:
@@ -180,6 +201,7 @@ const agents: AgentDef[] = [
   {
     dir: "switchboard",
     name: "solana-switchboard",
+    skillSlug: "switchboard",
     description:
       "Switchboard oracle operations — price feeds, on-demand data, VRF randomness, and real-time streaming via Surge on Solana.",
     domain:
@@ -188,6 +210,7 @@ const agents: AgentDef[] = [
   {
     dir: "coingecko",
     name: "solana-coingecko",
+    skillSlug: "coingecko",
     description:
       "CoinGecko market data — token prices, DEX pool data, OHLCV charts, trades, and analytics for Solana trading applications.",
     domain:
@@ -196,6 +219,7 @@ const agents: AgentDef[] = [
   {
     dir: "metengine-data-agent",
     name: "solana-metengine-data",
+    skillSlug: "metengine-data-agent",
     description:
       "MetEngine smart money analytics — real-time data for Polymarket, Hyperliquid perps, and Meteora LP/AMM pools via x402 pay-per-request.",
     domain:
@@ -206,6 +230,7 @@ const agents: AgentDef[] = [
   {
     dir: "metaplex",
     name: "solana-metaplex",
+    skillSlug: "metaplex",
     description:
       "Metaplex NFT operations — Core NFTs, Token Metadata, Bubblegum compressed NFTs, Candy Machine, and the Umi framework on Solana.",
     domain:
@@ -216,6 +241,7 @@ const agents: AgentDef[] = [
   {
     dir: "solana-kit",
     name: "solana-kit",
+    skillSlug: "solana-kit",
     description:
       "Modern @solana/kit SDK — RPC connections, signers, transaction building with pipe(), signing, sending, and account fetching with TypeScript.",
     domain:
@@ -224,6 +250,7 @@ const agents: AgentDef[] = [
   {
     dir: "solana-kit-migration",
     name: "solana-kit-migration",
+    skillSlug: "solana-kit-migration",
     description:
       "Migration guidance from @solana/web3.js v1 to @solana/kit — API mappings, edge cases, and SDK transition patterns.",
     domain:
@@ -232,6 +259,7 @@ const agents: AgentDef[] = [
   {
     dir: "surfpool",
     name: "solana-surfpool",
+    skillSlug: "surfpool",
     description:
       "Surfpool testing environment — drop-in solana-test-validator replacement with mainnet forking, cheatcodes, and Infrastructure as Code.",
     domain:
@@ -240,6 +268,7 @@ const agents: AgentDef[] = [
   {
     dir: "svm",
     name: "solana-svm",
+    skillSlug: "svm",
     description:
       "Solana architecture internals — SVM execution engine, account model, consensus, transactions, validator economics, and token extensions.",
     domain:
@@ -248,6 +277,7 @@ const agents: AgentDef[] = [
   {
     dir: "pinocchio-development",
     name: "solana-pinocchio",
+    skillSlug: "pinocchio-development",
     description:
       "Pinocchio program development — zero-dependency, zero-copy Solana programs, account validation, CPI patterns, and Anchor migration.",
     domain:
@@ -256,6 +286,7 @@ const agents: AgentDef[] = [
   {
     dir: "solana-agent-kit",
     name: "solana-agent-kit",
+    skillSlug: "solana-agent-kit",
     description:
       "SendAI Solana Agent Kit — 60+ blockchain actions, LangChain/Vercel AI integration, MCP server setup, and autonomous agent patterns.",
     domain:
@@ -266,6 +297,7 @@ const agents: AgentDef[] = [
   {
     dir: "phantom-connect",
     name: "solana-phantom-connect",
+    skillSlug: "phantom-connect",
     description:
       "Phantom Connect SDK — wallet connection, social login, transaction signing, token gating, crypto payments, and NFT minting across React/React Native.",
     domain:
@@ -274,6 +306,7 @@ const agents: AgentDef[] = [
   {
     dir: "phantom-wallet-mcp",
     name: "solana-phantom-wallet-mcp",
+    skillSlug: "phantom-wallet-mcp",
     description:
       "Phantom MCP wallet operations — get addresses, sign transactions, transfer tokens, buy tokens, and sign messages across Solana, Ethereum, Bitcoin, and Sui.",
     domain:
@@ -282,6 +315,7 @@ const agents: AgentDef[] = [
   {
     dir: "squads",
     name: "solana-squads",
+    skillSlug: "squads",
     description:
       "Squads Protocol multisig and smart accounts — team treasury management, account abstraction, programmable wallets, and Grid stablecoin rails.",
     domain:
@@ -292,6 +326,7 @@ const agents: AgentDef[] = [
   {
     dir: "debridge",
     name: "solana-debridge",
+    skillSlug: "debridge",
     description:
       "deBridge cross-chain operations — bridging assets between Solana and EVM chains, message passing, and trustless external calls.",
     domain:
@@ -302,6 +337,7 @@ const agents: AgentDef[] = [
   {
     dir: "dflow",
     name: "solana-dflow",
+    skillSlug: "dflow",
     description:
       "DFlow trading protocol — spot trading, prediction markets, Swap API, Metadata API, and WebSocket streaming on Solana.",
     domain:
@@ -310,6 +346,7 @@ const agents: AgentDef[] = [
   {
     dir: "helius-dflow",
     name: "solana-helius-dflow",
+    skillSlug: "helius-dflow",
     description:
       "Combined Helius + DFlow integration — trading apps with DFlow APIs and Helius infrastructure, Proof KYC, Sender, LaserStream, and wallet intelligence.",
     domain:
@@ -318,6 +355,7 @@ const agents: AgentDef[] = [
   {
     dir: "helius-phantom",
     name: "solana-helius-phantom",
+    skillSlug: "helius-phantom",
     description:
       "Combined Helius + Phantom frontend integration — React/React Native apps with Phantom Connect, Helius Sender, API key proxying, and secure frontend architecture.",
     domain:
@@ -326,6 +364,7 @@ const agents: AgentDef[] = [
   {
     dir: "ct-alpha",
     name: "solana-ct-alpha",
+    skillSlug: "ct-alpha",
     description:
       "Crypto Twitter intelligence — real-time narratives, trending tokens, yield strategies, smart money signals, TweetRank scoring, and raid detection.",
     domain:
@@ -336,6 +375,7 @@ const agents: AgentDef[] = [
   {
     dir: "light-protocol",
     name: "solana-light-protocol",
+    skillSlug: "light-protocol",
     description:
       "Light Protocol — ZK Compression for rent-free compressed tokens/PDAs, high-performance token standard (200x cheaper than SPL), and TypeScript SDK.",
     domain:
@@ -344,6 +384,7 @@ const agents: AgentDef[] = [
   {
     dir: "inco-svm",
     name: "solana-inco-svm",
+    skillSlug: "inco-svm",
     description:
       "Inco Lightning confidential computing — encrypted balances, private transfers, and attested decryption on Solana.",
     domain:
@@ -352,6 +393,7 @@ const agents: AgentDef[] = [
   {
     dir: "magicblock",
     name: "solana-magicblock",
+    skillSlug: "magicblock",
     description:
       "MagicBlock Ephemeral Rollups — sub-10ms latency, gasless transactions, Solana Plugins, and real-time gaming/HFT infrastructure.",
     domain:
@@ -360,6 +402,7 @@ const agents: AgentDef[] = [
   {
     dir: "manifest",
     name: "solana-manifest",
+    skillSlug: "manifest",
     description:
       "Manifest DEX integration — market reads, order placement, wrapper/global accounts, reverse orders, and frontend patterns on Solana.",
     domain:
@@ -370,6 +413,7 @@ const agents: AgentDef[] = [
   {
     dir: "vulnhunter",
     name: "solana-vulnhunter",
+    skillSlug: "vulnhunter",
     description:
       "Security vulnerability detection — dangerous APIs, footgun patterns, error-prone configurations, and variant analysis across Solana codebases.",
     domain:
@@ -378,6 +422,7 @@ const agents: AgentDef[] = [
   {
     dir: "code-recon",
     name: "solana-code-recon",
+    skillSlug: "zz-code-recon",
     description:
       "Security audit preparation — deep architectural context building, trust boundary mapping, and Trail of Bits-inspired codebase analysis.",
     domain:
@@ -461,7 +506,7 @@ You are a Coralised agent running inside a CoralOS session. You communicate with
 
 runCoralAgent({
   name: "${agent.name}",
-  systemPrompt: SYSTEM_PROMPT,
+  systemPrompt: SYSTEM_PROMPT,${agent.skillSlug ? `\n  skillUrl: "${SKILL_BASE}/${agent.skillSlug}/SKILL.md",` : ""}
 });
 `;
 }

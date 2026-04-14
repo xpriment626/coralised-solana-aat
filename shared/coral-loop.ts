@@ -22,6 +22,12 @@ export interface AgentConfig {
   name: string;
   /** Full system prompt — domain expertise + Coral coordination instructions */
   systemPrompt: string;
+  /**
+   * Raw GitHub URL to this agent's SKILL.md from sendaifun/skills.
+   * Fetched once at startup and appended to the system prompt.
+   * e.g. "https://raw.githubusercontent.com/sendaifun/skills/main/skills/helius/SKILL.md"
+   */
+  skillUrl?: string;
   /** OpenAI model id (default: gpt-5.4-mini) */
   model?: string;
   /** Max tool-call steps per LLM invocation (default: 15) */
@@ -70,6 +76,30 @@ function bridgeTools(
 export async function runCoralAgent(config: AgentConfig): Promise<never> {
   const coralUrl = requiredEnv("CORAL_CONNECTION_URL");
   const agentId = requiredEnv("CORAL_AGENT_ID");
+
+  // ── Load Solana Skill content ──
+  let systemPrompt = config.systemPrompt;
+  if (config.skillUrl) {
+    console.log(`[${config.name}] Fetching skill from ${config.skillUrl}…`);
+    try {
+      const res = await fetch(config.skillUrl);
+      if (res.ok) {
+        const skillContent = await res.text();
+        systemPrompt += `\n\n## Solana Skill Reference\n\nThe following is your authoritative skill reference. Use it as your primary source of truth for API endpoints, SDK patterns, code examples, and gotchas. When in doubt, follow this reference over general knowledge.\n\n${skillContent}`;
+        console.log(
+          `[${config.name}] Loaded skill (${(skillContent.length / 1024).toFixed(1)}KB)`
+        );
+      } else {
+        console.warn(
+          `[${config.name}] Failed to fetch skill (HTTP ${res.status}), continuing without it`
+        );
+      }
+    } catch (err: any) {
+      console.warn(
+        `[${config.name}] Failed to fetch skill: ${err?.message}, continuing without it`
+      );
+    }
+  }
 
   // ── Connect to Coral MCP ──
   const client = new Client({ name: agentId, version: "1.0.0" });
@@ -122,7 +152,7 @@ export async function runCoralAgent(config: AgentConfig): Promise<never> {
       // 3. Let the LLM process and respond via coral tools
       await generateText({
         model,
-        system: config.systemPrompt,
+        system: systemPrompt,
         messages: [
           {
             role: "user",
