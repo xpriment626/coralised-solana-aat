@@ -5,8 +5,11 @@ name = "solana-helius"
 version = "0.1.0"
 description = "Helius infrastructure — RPC, DAS API for NFTs/assets, real-time WebSocket/Laserstream streaming, webhooks, priority fees, and wallet analysis on Solana."
 
+readme = "Helius infrastructure — RPC, DAS API for NFTs/assets, real-time WebSocket/Laserstream streaming, webhooks, priority fees, and wallet analysis on Solana."
+summary = "Helius infrastructure — RPC, DAS API for NFTs/assets, real-time WebSocket/Laserstream streaming, webhooks, priority fees, and wallet analysis on Solana."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

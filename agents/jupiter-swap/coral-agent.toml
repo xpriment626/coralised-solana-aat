@@ -5,8 +5,11 @@ name = "solana-jupiter-swap"
 version = "0.1.0"
 description = "Token swap operations via Jupiter — Ultra Swap API, limit orders, DCA, route optimisation, and all Jupiter endpoints on Solana."
 
+readme = "Token swap operations via Jupiter — Ultra Swap API, limit orders, DCA, route optimisation, and all Jupiter endpoints on Solana."
+summary = "Token swap operations via Jupiter — Ultra Swap API, limit orders, DCA, route optimisation, and all Jupiter endpoints on Solana."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

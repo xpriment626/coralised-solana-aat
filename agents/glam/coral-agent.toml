@@ -5,8 +5,11 @@ name = "solana-glam"
 version = "0.1.0"
 description = "GLAM Protocol vault management — tokenised vaults, share classes, DeFi strategies, treasury operations, and access control on Solana."
 
+readme = "GLAM Protocol vault management — tokenised vaults, share classes, DeFi strategies, treasury operations, and access control on Solana."
+summary = "GLAM Protocol vault management — tokenised vaults, share classes, DeFi strategies, treasury operations, and access control on Solana."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

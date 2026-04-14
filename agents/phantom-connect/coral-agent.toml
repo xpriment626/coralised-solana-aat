@@ -5,8 +5,11 @@ name = "solana-phantom-connect"
 version = "0.1.0"
 description = "Phantom Connect SDK — wallet connection, social login, transaction signing, token gating, crypto payments, and NFT minting across React/React Native."
 
+readme = "Phantom Connect SDK — wallet connection, social login, transaction signing, token gating, crypto payments, and NFT minting across React/React Native."
+summary = "Phantom Connect SDK — wallet connection, social login, transaction signing, token gating, crypto payments, and NFT minting across React/React Native."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

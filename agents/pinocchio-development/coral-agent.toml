@@ -5,8 +5,11 @@ name = "solana-pinocchio"
 version = "0.1.0"
 description = "Pinocchio program development — zero-dependency, zero-copy Solana programs, account validation, CPI patterns, and Anchor migration."
 
+readme = "Pinocchio program development — zero-dependency, zero-copy Solana programs, account validation, CPI patterns, and Anchor migration."
+summary = "Pinocchio program development — zero-dependency, zero-copy Solana programs, account validation, CPI patterns, and Anchor migration."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

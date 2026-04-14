@@ -5,8 +5,11 @@ name = "solana-lavarage"
 version = "0.1.0"
 description = "Lavarage leveraged trading — long/short positions on crypto, memecoins, RWAs, and commodities with up to 12x leverage on Solana."
 
+readme = "Lavarage leveraged trading — long/short positions on crypto, memecoins, RWAs, and commodities with up to 12x leverage on Solana."
+summary = "Lavarage leveraged trading — long/short positions on crypto, memecoins, RWAs, and commodities with up to 12x leverage on Solana."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

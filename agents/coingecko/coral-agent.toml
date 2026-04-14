@@ -5,8 +5,11 @@ name = "solana-coingecko"
 version = "0.1.0"
 description = "CoinGecko market data — token prices, DEX pool data, OHLCV charts, trades, and analytics for Solana trading applications."
 
+readme = "CoinGecko market data — token prices, DEX pool data, OHLCV charts, trades, and analytics for Solana trading applications."
+summary = "CoinGecko market data — token prices, DEX pool data, OHLCV charts, trades, and analytics for Solana trading applications."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

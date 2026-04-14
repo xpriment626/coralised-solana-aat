@@ -5,8 +5,11 @@ name = "solana-switchboard"
 version = "0.1.0"
 description = "Switchboard oracle operations — price feeds, on-demand data, VRF randomness, and real-time streaming via Surge on Solana."
 
+readme = "Switchboard oracle operations — price feeds, on-demand data, VRF randomness, and real-time streaming via Surge on Solana."
+summary = "Switchboard oracle operations — price feeds, on-demand data, VRF randomness, and real-time streaming via Surge on Solana."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

@@ -5,8 +5,11 @@ name = "solana-sanctum"
 version = "0.1.0"
 description = "Sanctum liquid staking operations — LST swaps, SOL staking, Infinity pool, and liquidity infrastructure on Solana."
 
+readme = "Sanctum liquid staking operations — LST swaps, SOL staking, Infinity pool, and liquidity infrastructure on Solana."
+summary = "Sanctum liquid staking operations — LST swaps, SOL staking, Infinity pool, and liquidity infrastructure on Solana."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

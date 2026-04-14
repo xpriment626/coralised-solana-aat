@@ -5,8 +5,11 @@ name = "solana-metengine-data"
 version = "0.1.0"
 description = "MetEngine smart money analytics — real-time data for Polymarket, Hyperliquid perps, and Meteora LP/AMM pools via x402 pay-per-request."
 
+readme = "MetEngine smart money analytics — real-time data for Polymarket, Hyperliquid perps, and Meteora LP/AMM pools via x402 pay-per-request."
+summary = "MetEngine smart money analytics — real-time data for Polymarket, Hyperliquid perps, and Meteora LP/AMM pools via x402 pay-per-request."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

@@ -5,8 +5,11 @@ name = "solana-raydium"
 version = "0.1.0"
 description = "Raydium AMM and CLMM pool operations — swaps, liquidity provision, pool creation, LaunchLab token launches, and farming on Solana."
 
+readme = "Raydium AMM and CLMM pool operations — swaps, liquidity provision, pool creation, LaunchLab token launches, and farming on Solana."
+summary = "Raydium AMM and CLMM pool operations — swaps, liquidity provision, pool creation, LaunchLab token launches, and farming on Solana."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

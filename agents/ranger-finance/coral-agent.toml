@@ -5,8 +5,11 @@ name = "solana-ranger-finance"
 version = "0.1.0"
 description = "Ranger Finance perps aggregation — smart order routing across Drift, Flash, Adrena, and Jupiter perps on Solana."
 
+readme = "Ranger Finance perps aggregation — smart order routing across Drift, Flash, Adrena, and Jupiter perps on Solana."
+summary = "Ranger Finance perps aggregation — smart order routing across Drift, Flash, Adrena, and Jupiter perps on Solana."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

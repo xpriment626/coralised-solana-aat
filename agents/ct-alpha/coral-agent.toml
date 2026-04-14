@@ -5,8 +5,11 @@ name = "solana-ct-alpha"
 version = "0.1.0"
 description = "Crypto Twitter intelligence — real-time narratives, trending tokens, yield strategies, smart money signals, TweetRank scoring, and raid detection."
 
+readme = "Crypto Twitter intelligence — real-time narratives, trending tokens, yield strategies, smart money signals, TweetRank scoring, and raid detection."
+summary = "Crypto Twitter intelligence — real-time narratives, trending tokens, yield strategies, smart money signals, TweetRank scoring, and raid detection."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

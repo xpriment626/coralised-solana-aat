@@ -5,8 +5,11 @@ name = "solana-lulo"
 version = "0.1.0"
 description = "Lulo lending aggregator — automated yield optimisation across Kamino, Drift, MarginFi, and Jupiter on Solana."
 
+readme = "Lulo lending aggregator — automated yield optimisation across Kamino, Drift, MarginFi, and Jupiter on Solana."
+summary = "Lulo lending aggregator — automated yield optimisation across Kamino, Drift, MarginFi, and Jupiter on Solana."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

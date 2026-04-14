@@ -5,8 +5,11 @@ name = "solana-magicblock"
 version = "0.1.0"
 description = "MagicBlock Ephemeral Rollups — sub-10ms latency, gasless transactions, Solana Plugins, and real-time gaming/HFT infrastructure."
 
+readme = "MagicBlock Ephemeral Rollups — sub-10ms latency, gasless transactions, Solana Plugins, and real-time gaming/HFT infrastructure."
+summary = "MagicBlock Ephemeral Rollups — sub-10ms latency, gasless transactions, Solana Plugins, and real-time gaming/HFT infrastructure."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

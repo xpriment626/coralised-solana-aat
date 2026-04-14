@@ -5,8 +5,11 @@ name = "solana-marginfi"
 version = "0.1.0"
 description = "MarginFi lending operations — deposits, borrows, repayments, flash loans, leveraged positions (looping) on Solana."
 
+readme = "MarginFi lending operations — deposits, borrows, repayments, flash loans, leveraged positions (looping) on Solana."
+summary = "MarginFi lending operations — deposits, borrows, repayments, flash loans, leveraged positions (looping) on Solana."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

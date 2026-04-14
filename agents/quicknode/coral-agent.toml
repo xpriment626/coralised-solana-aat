@@ -5,8 +5,11 @@ name = "solana-quicknode"
 version = "0.1.0"
 description = "QuickNode infrastructure — RPC endpoints, DAS API, Yellowstone gRPC streaming, Priority Fee API, Streams, Webhooks, and Metis Jupiter integration."
 
+readme = "QuickNode infrastructure — RPC endpoints, DAS API, Yellowstone gRPC streaming, Priority Fee API, Streams, Webhooks, and Metis Jupiter integration."
+summary = "QuickNode infrastructure — RPC endpoints, DAS API, Yellowstone gRPC streaming, Priority Fee API, Streams, Webhooks, and Metis Jupiter integration."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

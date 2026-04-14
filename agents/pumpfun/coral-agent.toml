@@ -5,8 +5,11 @@ name = "solana-pumpfun"
 version = "0.1.0"
 description = "PumpFun token launch operations — bonding curve creation, buy/sell on curves, PumpSwap AMM, creator fees, and SDK integration on Solana."
 
+readme = "PumpFun token launch operations — bonding curve creation, buy/sell on curves, PumpSwap AMM, creator fees, and SDK integration on Solana."
+summary = "PumpFun token launch operations — bonding curve creation, buy/sell on curves, PumpSwap AMM, creator fees, and SDK integration on Solana."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

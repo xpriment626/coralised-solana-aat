@@ -5,8 +5,11 @@ name = "solana-kit"
 version = "0.1.0"
 description = "Modern @solana/kit SDK — RPC connections, signers, transaction building with pipe(), signing, sending, and account fetching with TypeScript."
 
+readme = "Modern @solana/kit SDK — RPC connections, signers, transaction building with pipe(), signing, sending, and account fetching with TypeScript."
+summary = "Modern @solana/kit SDK — RPC connections, signers, transaction building with pipe(), signing, sending, and account fetching with TypeScript."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

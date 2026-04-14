@@ -5,8 +5,11 @@ name = "solana-phantom-wallet-mcp"
 version = "0.1.0"
 description = "Phantom MCP wallet operations — get addresses, sign transactions, transfer tokens, buy tokens, and sign messages across Solana, Ethereum, Bitcoin, and Sui."
 
+readme = "Phantom MCP wallet operations — get addresses, sign transactions, transfer tokens, buy tokens, and sign messages across Solana, Ethereum, Bitcoin, and Sui."
+summary = "Phantom MCP wallet operations — get addresses, sign transactions, transfer tokens, buy tokens, and sign messages across Solana, Ethereum, Bitcoin, and Sui."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

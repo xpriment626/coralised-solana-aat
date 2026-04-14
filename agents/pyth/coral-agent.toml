@@ -5,8 +5,11 @@ name = "solana-pyth"
 version = "0.1.0"
 description = "Pyth Network oracle integration — real-time price feeds, confidence intervals, EMA prices, on-chain CPI, and streaming updates for Solana DeFi."
 
+readme = "Pyth Network oracle integration — real-time price feeds, confidence intervals, EMA prices, on-chain CPI, and streaming updates for Solana DeFi."
+summary = "Pyth Network oracle integration — real-time price feeds, confidence intervals, EMA prices, on-chain CPI, and streaming updates for Solana DeFi."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

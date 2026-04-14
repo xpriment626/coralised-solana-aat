@@ -5,8 +5,11 @@ name = "solana-squads"
 version = "0.1.0"
 description = "Squads Protocol multisig and smart accounts — team treasury management, account abstraction, programmable wallets, and Grid stablecoin rails."
 
+readme = "Squads Protocol multisig and smart accounts — team treasury management, account abstraction, programmable wallets, and Grid stablecoin rails."
+summary = "Squads Protocol multisig and smart accounts — team treasury management, account abstraction, programmable wallets, and Grid stablecoin rails."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

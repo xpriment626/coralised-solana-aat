@@ -5,8 +5,11 @@ name = "solana-helius-phantom"
 version = "0.1.0"
 description = "Combined Helius + Phantom frontend integration — React/React Native apps with Phantom Connect, Helius Sender, API key proxying, and secure frontend architecture."
 
+readme = "Combined Helius + Phantom frontend integration — React/React Native apps with Phantom Connect, Helius Sender, API key proxying, and secure frontend architecture."
+summary = "Combined Helius + Phantom frontend integration — React/React Native apps with Phantom Connect, Helius Sender, API key proxying, and secure frontend architecture."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

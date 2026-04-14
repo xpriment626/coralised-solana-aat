@@ -5,8 +5,11 @@ name = "solana-inco-svm"
 version = "0.1.0"
 description = "Inco Lightning confidential computing — encrypted balances, private transfers, and attested decryption on Solana."
 
+readme = "Inco Lightning confidential computing — encrypted balances, private transfers, and attested decryption on Solana."
+summary = "Inco Lightning confidential computing — encrypted balances, private transfers, and attested decryption on Solana."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

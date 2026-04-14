@@ -5,8 +5,11 @@ name = "solana-svm"
 version = "0.1.0"
 description = "Solana architecture internals — SVM execution engine, account model, consensus, transactions, validator economics, and token extensions."
 
+readme = "Solana architecture internals — SVM execution engine, account model, consensus, transactions, validator economics, and token extensions."
+summary = "Solana architecture internals — SVM execution engine, account model, consensus, transactions, validator economics, and token extensions."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

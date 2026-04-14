@@ -5,8 +5,11 @@ name = "solana-agent-kit"
 version = "0.1.0"
 description = "SendAI Solana Agent Kit — 60+ blockchain actions, LangChain/Vercel AI integration, MCP server setup, and autonomous agent patterns."
 
+readme = "SendAI Solana Agent Kit — 60+ blockchain actions, LangChain/Vercel AI integration, MCP server setup, and autonomous agent patterns."
+summary = "SendAI Solana Agent Kit — 60+ blockchain actions, LangChain/Vercel AI integration, MCP server setup, and autonomous agent patterns."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

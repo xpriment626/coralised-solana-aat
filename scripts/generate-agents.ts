@@ -440,8 +440,11 @@ name = "${agent.name}"
 version = "0.1.0"
 description = "${agent.description}"
 
+readme = "${agent.description}"
+summary = "${agent.description}"
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

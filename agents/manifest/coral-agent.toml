@@ -5,8 +5,11 @@ name = "solana-manifest"
 version = "0.1.0"
 description = "Manifest DEX integration — market reads, order placement, wrapper/global accounts, reverse orders, and frontend patterns on Solana."
 
+readme = "Manifest DEX integration — market reads, order placement, wrapper/global accounts, reverse orders, and frontend patterns on Solana."
+summary = "Manifest DEX integration — market reads, order placement, wrapper/global accounts, reverse orders, and frontend patterns on Solana."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

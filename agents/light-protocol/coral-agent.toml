@@ -5,8 +5,11 @@ name = "solana-light-protocol"
 version = "0.1.0"
 description = "Light Protocol — ZK Compression for rent-free compressed tokens/PDAs, high-performance token standard (200x cheaper than SPL), and TypeScript SDK."
 
+readme = "Light Protocol — ZK Compression for rent-free compressed tokens/PDAs, high-performance token standard (200x cheaper than SPL), and TypeScript SDK."
+summary = "Light Protocol — ZK Compression for rent-free compressed tokens/PDAs, high-performance token standard (200x cheaper than SPL), and TypeScript SDK."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

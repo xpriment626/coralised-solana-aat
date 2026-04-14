@@ -5,8 +5,11 @@ name = "solana-dflow"
 version = "0.1.0"
 description = "DFlow trading protocol — spot trading, prediction markets, Swap API, Metadata API, and WebSocket streaming on Solana."
 
+readme = "DFlow trading protocol — spot trading, prediction markets, Swap API, Metadata API, and WebSocket streaming on Solana."
+summary = "DFlow trading protocol — spot trading, prediction markets, Swap API, Metadata API, and WebSocket streaming on Solana."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

@@ -5,8 +5,11 @@ name = "solana-kamino"
 version = "0.1.0"
 description = "Kamino Finance operations — lending, borrowing, automated liquidity strategies, leverage trading, and oracle aggregation on Solana."
 
+readme = "Kamino Finance operations — lending, borrowing, automated liquidity strategies, leverage trading, and oracle aggregation on Solana."
+summary = "Kamino Finance operations — lending, borrowing, automated liquidity strategies, leverage trading, and oracle aggregation on Solana."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

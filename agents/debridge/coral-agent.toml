@@ -5,8 +5,11 @@ name = "solana-debridge"
 version = "0.1.0"
 description = "deBridge cross-chain operations — bridging assets between Solana and EVM chains, message passing, and trustless external calls."
 
+readme = "deBridge cross-chain operations — bridging assets between Solana and EVM chains, message passing, and trustless external calls."
+summary = "deBridge cross-chain operations — bridging assets between Solana and EVM chains, message passing, and trustless external calls."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

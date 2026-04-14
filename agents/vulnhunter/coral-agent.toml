@@ -5,8 +5,11 @@ name = "solana-vulnhunter"
 version = "0.1.0"
 description = "Security vulnerability detection — dangerous APIs, footgun patterns, error-prone configurations, and variant analysis across Solana codebases."
 
+readme = "Security vulnerability detection — dangerous APIs, footgun patterns, error-prone configurations, and variant analysis across Solana codebases."
+summary = "Security vulnerability detection — dangerous APIs, footgun patterns, error-prone configurations, and variant analysis across Solana codebases."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

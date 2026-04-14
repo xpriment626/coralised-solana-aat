@@ -5,8 +5,11 @@ name = "solana-carbium"
 version = "0.1.0"
 description = "Carbium infrastructure — bare-metal RPC, gRPC streaming (~22ms), DEX aggregation via CQ1 engine, gasless swaps, and MEV-protected execution."
 
+readme = "Carbium infrastructure — bare-metal RPC, gRPC streaming (~22ms), DEX aggregation via CQ1 engine, gasless swaps, and MEV-protected execution."
+summary = "Carbium infrastructure — bare-metal RPC, gRPC streaming (~22ms), DEX aggregation via CQ1 engine, gasless swaps, and MEV-protected execution."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

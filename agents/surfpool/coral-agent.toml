@@ -5,8 +5,11 @@ name = "solana-surfpool"
 version = "0.1.0"
 description = "Surfpool testing environment — drop-in solana-test-validator replacement with mainnet forking, cheatcodes, and Infrastructure as Code."
 
+readme = "Surfpool testing environment — drop-in solana-test-validator replacement with mainnet forking, cheatcodes, and Infrastructure as Code."
+summary = "Surfpool testing environment — drop-in solana-test-validator replacement with mainnet forking, cheatcodes, and Infrastructure as Code."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

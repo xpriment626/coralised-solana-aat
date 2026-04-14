@@ -5,8 +5,11 @@ name = "solana-meteora"
 version = "0.1.0"
 description = "Meteora DeFi operations — DLMM pools, DAMM, dynamic bonding curves, Alpha Vaults, token launches, and zap operations on Solana."
 
+readme = "Meteora DeFi operations — DLMM pools, DAMM, dynamic bonding curves, Alpha Vaults, token launches, and zap operations on Solana."
+summary = "Meteora DeFi operations — DLMM pools, DAMM, dynamic bonding curves, Alpha Vaults, token launches, and zap operations on Solana."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

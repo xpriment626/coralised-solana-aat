@@ -5,8 +5,11 @@ name = "solana-kit-migration"
 version = "0.1.0"
 description = "Migration guidance from @solana/web3.js v1 to @solana/kit — API mappings, edge cases, and SDK transition patterns."
 
+readme = "Migration guidance from @solana/web3.js v1 to @solana/kit — API mappings, edge cases, and SDK transition patterns."
+summary = "Migration guidance from @solana/web3.js v1 to @solana/kit — API mappings, edge cases, and SDK transition patterns."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

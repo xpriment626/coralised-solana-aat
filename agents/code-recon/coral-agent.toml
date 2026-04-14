@@ -5,8 +5,11 @@ name = "solana-code-recon"
 version = "0.1.0"
 description = "Security audit preparation — deep architectural context building, trust boundary mapping, and Trail of Bits-inspired codebase analysis."
 
+readme = "Security audit preparation — deep architectural context building, trust boundary mapping, and Trail of Bits-inspired codebase analysis."
+summary = "Security audit preparation — deep architectural context building, trust boundary mapping, and Trail of Bits-inspired codebase analysis."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

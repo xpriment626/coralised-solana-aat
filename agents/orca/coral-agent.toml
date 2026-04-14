@@ -5,8 +5,11 @@ name = "solana-orca"
 version = "0.1.0"
 description = "Orca Whirlpools concentrated liquidity operations — swaps, position management, pool creation, and fee harvesting on Solana and Eclipse."
 
+readme = "Orca Whirlpools concentrated liquidity operations — swaps, position management, pool creation, and fee harvesting on Solana and Eclipse."
+summary = "Orca Whirlpools concentrated liquidity operations — swaps, position management, pool creation, and fee harvesting on Solana and Eclipse."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]

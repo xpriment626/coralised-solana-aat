@@ -5,8 +5,11 @@ name = "solana-metaplex"
 version = "0.1.0"
 description = "Metaplex NFT operations — Core NFTs, Token Metadata, Bubblegum compressed NFTs, Candy Machine, and the Umi framework on Solana."
 
+readme = "Metaplex NFT operations — Core NFTs, Token Metadata, Bubblegum compressed NFTs, Candy Machine, and the Umi framework on Solana."
+summary = "Metaplex NFT operations — Core NFTs, Token Metadata, Bubblegum compressed NFTs, Candy Machine, and the Umi framework on Solana."
+
 [agent.license]
-type = "spdx"
+type = "sdpx"
 expression = "MIT"
 
 [runtimes.executable]
