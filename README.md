@@ -168,11 +168,12 @@ solana-aat-library/
 
 1. **Coral server launches the agent** via `startup.sh` (the `executable` runtime).
 2. **Startup injects environment variables:** `CORAL_CONNECTION_URL`, `CORAL_AGENT_ID`, `CORAL_SESSION_ID`, etc.
-3. **The agent connects** to the Coral MCP server and discovers `coral_*` coordination tools.
-4. **Tools are bridged** into the Vercel AI SDK so the LLM (gpt-5.4-mini) can call them natively.
-5. **Main loop:** `coral_wait_for_mention` → LLM processes the mention → responds via `coral_send_message` → waits again.
+3. **The agent fetches its Solana Skill** — each agent has a `skillUrl` pointing to its `SKILL.md` in the [sendaifun/skills](https://github.com/sendaifun/skills) repo. This is fetched once at boot and appended to the system prompt, giving the LLM authoritative reference material (API endpoints, SDK patterns, code examples, error handling, gotchas) rather than relying on training data alone.
+4. **The agent connects** to the Coral MCP server and discovers `coral_*` coordination tools.
+5. **Tools are bridged** into the Vercel AI SDK so the LLM (gpt-5.4-mini) can call them natively.
+6. **Main loop:** `coral_wait_for_mention` → LLM processes the mention → responds via `coral_send_message` → waits again.
 
-The shared runtime ([shared/coral-loop.ts](shared/coral-loop.ts)) handles steps 2–5. Each agent only needs to provide its system prompt and call `runCoralAgent()`.
+The shared runtime ([shared/coral-loop.ts](shared/coral-loop.ts)) handles steps 2–6. Each agent only needs to provide its system prompt, skill URL, and call `runCoralAgent()`. If the skill fetch fails (network issue, repo down), the agent logs a warning and continues with just its base domain knowledge.
 
 ---
 
