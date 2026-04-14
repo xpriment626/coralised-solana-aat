@@ -204,9 +204,7 @@ bash scripts/link-all.sh
 Using npx (no local clone needed):
 
 ```bash
-npx coral-server@1.1.0 start \
-  --auth.keys=dev \
-  --registry.enable-marketplace-agent-registry-source=true
+npx coralos-dev@1.1.0-SNAPSHOT-18 server start -- --auth.keys=dev --console.console-release-version="v0.3.10"
 ```
 
 Or if you have the server cloned locally:
