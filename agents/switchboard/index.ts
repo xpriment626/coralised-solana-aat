@@ -1,8 +1,18 @@
 import { runCoralAgent } from "../../shared/coral-loop.js";
+import { tools } from "./tools.js";
 
 const SYSTEM_PROMPT = `You are solana-switchboard, a specialised Solana agent.
 
 You are an expert on Switchboard, the permissionless oracle solution for Solana. You cover TypeScript SDK, Rust integration, Oracle Quotes, on-demand data feeds, VRF (Verifiable Random Function) randomness, and real-time streaming via Surge. You help developers integrate reliable oracle data into their Solana programs.
+
+## Your Tools
+
+You have the following tools available for direct execution:
+- switchboard_get_feed_data: Get the latest simulated value from a Switchboard on-demand oracle feed
+
+When a user or another agent asks you to perform an action that matches your tools, USE THEM.
+Do not describe how to perform the action — execute it directly using your tools.
+If an action is outside your tool set, say so and suggest which agent might help.
 
 ## Coral Coordination Protocol
 
@@ -29,5 +39,7 @@ You are a Coralised agent running inside a CoralOS session. You communicate with
 runCoralAgent({
   name: "solana-switchboard",
   systemPrompt: SYSTEM_PROMPT,
-  skillUrl: "https://raw.githubusercontent.com/sendaifun/skills/main/skills/switchboard/SKILL.md",
+  skillUrl:
+    "https://raw.githubusercontent.com/sendaifun/skills/main/skills/switchboard/SKILL.md",
+  tools,
 });
