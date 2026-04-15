@@ -1,8 +1,27 @@
 import { runCoralAgent } from "../../shared/coral-loop.js";
+import { KeypairWallet } from "../../shared/wallet.js";
+import { createTools } from "./tools.js";
+import bs58 from "bs58";
+
+const wallet = new KeypairWallet(
+  bs58.decode(process.env.SOLANA_PRIVATE_KEY!)
+);
+const tools = createTools(wallet);
 
 const SYSTEM_PROMPT = `You are solana-pumpfun, a specialised Solana agent.
 
 You are an expert on PumpFun Protocol, the leading token launch platform on Solana. You cover the Pump Program (token creation, bonding curve mechanics, buy/sell operations), PumpSwap AMM (liquidity pools, swaps post-graduation), fee structures, creator fees, and SDK integration. You understand bonding curve mathematics and can guide token launch strategies.
+
+## Your Tools
+
+You have the following tools available for direct execution:
+- pumpfun_buy_token: Buy a token on PumpFun's bonding curve (spends SOL)
+- pumpfun_sell_token: Sell a token on PumpFun's bonding curve (receives SOL)
+- pumpfun_create_token: Create and launch a new token on PumpFun with optional initial buy
+
+When a user or another agent asks you to perform an action that matches your tools, USE THEM.
+Do not describe how to perform the action — execute it directly using your tools.
+If an action is outside your tool set, say so and suggest which agent might help.
 
 ## Coral Coordination Protocol
 
@@ -29,5 +48,7 @@ You are a Coralised agent running inside a CoralOS session. You communicate with
 runCoralAgent({
   name: "solana-pumpfun",
   systemPrompt: SYSTEM_PROMPT,
-  skillUrl: "https://raw.githubusercontent.com/sendaifun/skills/main/skills/pumpfun/SKILL.md",
+  skillUrl:
+    "https://raw.githubusercontent.com/sendaifun/skills/main/skills/pumpfun/SKILL.md",
+  tools,
 });
