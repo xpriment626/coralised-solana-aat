@@ -1,12 +1,18 @@
 # market-price
 
-Capability atom for CoinGecko token price data.
+Capability atom for CoinGecko price data via Solana token address.
 
-Agent Kit actions:
+Agent Kit actions (read-only):
 
 - `GET_COINGECKO_TOKEN_PRICE_DATA_ACTION`
 
-Primary handoffs:
+Declared handoffs:
 
-- `oracle-price` for Pyth comparison
-- `token-info` when token identity is ambiguous
+- `oracle-price` — Pyth oracle comparison
+- `token-info` — when token identity is ambiguous
+
+References:
+
+- Plan: `docs/superpowers/plans/market-data-atoms.md`
+- Spec: `docs/superpowers/specs/2026-04-17-capability-atoms-agent-kit-compatibility-design.md`
+- Manifest: `src/atoms/market-data.ts` (`marketPriceAtom`)

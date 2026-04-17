@@ -1,5 +1,7 @@
 # Agent Tool Extensibility Implementation Plan
 
+> **Status:** Pre-overlay. Predates the CLAUDE.md island-plan conventions (no header with Design Source / Depends On / Scope Summary, tasks lack Verification and Stop Condition fields). Do not use as a template for new plans.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Give the 6 Tier 1 Coralised agents real execution tools so they can act on their skills, not just discuss them.

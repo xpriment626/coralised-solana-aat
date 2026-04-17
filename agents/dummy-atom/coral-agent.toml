@@ -1,0 +1,88 @@
+# Coral agent manifest for the dummy atom template reference.
+#
+# This file is the structural template every atom copies. See
+# docs/superpowers/plans/atom-template-manifest-and-environment.md.
+#
+# Console-visible options are declared under [options]; Coral connection
+# variables (CORAL_CONNECTION_URL, CORAL_AGENT_ID, CORAL_AGENT_SECRET,
+# CORAL_SESSION_ID, CORAL_API_URL, CORAL_RUNTIME_ID) are injected by
+# Coral Server at launch time and should not be declared here.
+
+edition = 4
+
+[agent]
+capabilities = ["resources", "tool_refreshing"]
+
+# registry identity — len 1-32, pattern ^[a-z0-9]([a-z0-9]*(-[a-z0-9]+)*)?$
+name = "dummy-atom"
+version = "0.1.0"
+summary = "Reference scaffold atom used for Console smoke testing."
+description = """
+The dummy atom is a capability-free reference scaffold for the TypeScript
+atom template. It connects to Coral MCP, runs the bounded loop, and calls
+the built-in atom.noop tool. Real atoms replace this manifest's identity
+fields and replace the capability-specific options block below.
+"""
+readme = "# dummy-atom\n\nReference scaffold used for Console smoke testing the TS atom template."
+
+[agent.license]
+type = "text"
+text = "MIT"
+
+# Runtime: invoke tsx against the atom's entrypoint. Coral Server runs the
+# process from the agent directory (where this TOML lives), so ../.. points
+# at the repo root and src/runtime is TypeScript loaded by tsx.
+[runtimes.executable]
+transport = "streamable_http"
+path = "npx"
+arguments = ["--yes", "tsx", "index.ts"]
+
+# --- Options ---------------------------------------------------------------
+#
+# Every atom must surface these options so Console can render / override
+# them. Each comment notes which loop position the option drives:
+#   (loop:system-every-iteration) — baked into system message on every turn
+#   (loop:user-turn-0)            — additional instructions on the first user turn
+#   (loop:user-turn-1+)           — message used on every iteration after the first
+#   (loop:budget)                 — iteration / token budget controls
+#   (model)                       — model provider wiring
+#
+# Real atoms (plan 5) extend this block with capability-specific options
+# (API keys, RPC URLs, etc.) — replace the capability example block below.
+
+[options]
+
+# --- Loop budget ---
+MAX_ITERATIONS = { type = "u32", default = 20, display.label = "Max iterations", display.description = "Upper bound on the number of model+tool turns per session. (loop:budget)" }
+ITERATION_DELAY_MS = { type = "u32", default = 0, display.label = "Iteration delay (ms)", display.description = "Delay between iterations in milliseconds; useful for backing off against rate-limited APIs. (loop:budget)" }
+MAX_TOKENS = { type = "u32", default = 4096, display.label = "Max tokens", display.description = "Token budget passed to the model per turn. (loop:budget)" }
+
+# --- Model config ---
+MODEL_PROVIDER = { type = "string", default = "openai", display.label = "Model provider", display.description = "openai, anthropic, or openrouter. (model)" }
+MODEL_ID = { type = "string", default = "gpt-4o-mini", display.label = "Model id", display.description = "Provider-specific model identifier. (model)" }
+MODEL_API_KEY = { type = "string", required = true, secret = true, display.label = "Model API key", display.description = "API key for the configured provider. (model)" }
+MODEL_PROVIDER_URL_OVERRIDE = { type = "string", display.label = "Model provider URL override", display.description = "Optional custom base URL for the model provider. Leave empty for provider default. (model)" }
+
+# --- Prompt surface (Koog-parity — all four prompt knobs are exposed) ---
+SYSTEM_PROMPT = { type = "string", default = """
+You are solana-dummy-atom, a capability-free reference scaffold for the TypeScript atom template.
+Your job is to prove the Coral runtime loop works end-to-end: connect, refresh resources, call a tool, send a message, exit.
+
+<resource>coral://instruction</resource>
+<resource>coral://state</resource>
+""", display.multiline = true, display.label = "System prompt", display.description = "Base system prompt. Must contain the two <resource> tags — the runtime expands them each iteration with the current coral://instruction and coral://state. (loop:system-every-iteration)" }
+
+EXTRA_SYSTEM_PROMPT = { type = "string", default = "", display.multiline = true, display.label = "Extra system prompt", display.description = "Additive text appended after SYSTEM_PROMPT each iteration. Leave empty unless an atom needs additional persona/constraint text. (loop:system-every-iteration)" }
+
+EXTRA_INITIAL_USER_PROMPT = { type = "string", default = "", display.multiline = true, display.label = "Extra initial user prompt", display.description = "Task-specific instructions wrapped into the first user message only. (loop:user-turn-0)" }
+
+FOLLOWUP_USER_PROMPT = { type = "string", default = "[automated message] Continue fulfilling your responsibilities collaboratively to the best of your ability.", display.multiline = true, display.label = "Follow-up user prompt", display.description = "User message sent on every iteration after the first. Keeps the loop productive while waiting for mentions. (loop:user-turn-1+)" }
+
+# --- Capability-specific options ---
+#
+# Real atoms replace this block with their credential/capability options,
+# e.g. COINGECKO_API_KEY, HELIUS_API_KEY, SOLANA_RPC_URL. The dummy atom
+# has no capability surface, so nothing is declared here.
+#
+# Example (for reference):
+#   COINGECKO_API_KEY = { type = "string", required = true, secret = true, display.label = "CoinGecko API key" }
