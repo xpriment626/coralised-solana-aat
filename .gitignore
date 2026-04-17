@@ -3,5 +3,6 @@ dist/
 .env
 *.env.local
 .worktrees/
-docs/
 CLAUDE.md
+.coral-debug/
+.coral-runs/

@@ -1,0 +1,54 @@
+# oracle-price — Coral capability atom.
+# See docs/superpowers/plans/market-data-atoms.md.
+
+edition = 4
+
+[agent]
+capabilities = ["resources", "tool_refreshing"]
+name = "oracle-price"
+version = "0.1.0"
+summary = "Fetch Pyth oracle prices for supported token symbols."
+description = """
+oracle-price returns Pyth oracle price and confidence for a supported token
+symbol. It is useful for price verification and coverage checks. It should be
+expected to have incomplete coverage for long-tail tokens; missing coverage is
+surfaced explicitly, never silently approximated.
+"""
+readme = "# oracle-price\n\nCapability atom for Pyth oracle price verification by token symbol."
+
+[agent.license]
+type = "text"
+text = "MIT"
+
+[runtimes.executable]
+transport = "streamable_http"
+path = "npx"
+arguments = ["--yes", "tsx", "index.ts"]
+
+[options]
+
+MAX_ITERATIONS = { type = "u32", default = 20 }
+ITERATION_DELAY_MS = { type = "u32", default = 0 }
+MAX_TOKENS = { type = "u32", default = 4096 }
+
+MODEL_PROVIDER = { type = "string", default = "openai" }
+MODEL_ID = { type = "string", default = "gpt-4o-mini" }
+MODEL_API_KEY = { type = "string", required = true, secret = true, display.label = "Model API key" }
+MODEL_PROVIDER_URL_OVERRIDE = { type = "string" }
+
+SYSTEM_PROMPT = { type = "string", default = """
+You are solana-oracle-price, a capability atom focused on fetching Pyth oracle prices for supported token symbols.
+
+You own symbol-based oracle lookup. You do not resolve token addresses or fetch CoinGecko market data. If the user's request is outside your capability, suggest handing off to one of: market-price, token-info.
+
+Communicate with other agents only through Coral message tools. Your outputs intended for other agents must be JSON payloads wrapped as atom_request or atom_result messages sent via coral_send_message.
+
+<resource>coral://instruction</resource>
+<resource>coral://state</resource>
+""", display.multiline = true }
+
+EXTRA_SYSTEM_PROMPT = { type = "string", default = "" }
+EXTRA_INITIAL_USER_PROMPT = { type = "string", default = "" }
+FOLLOWUP_USER_PROMPT = { type = "string", default = "[automated message] Continue fulfilling your responsibilities collaboratively to the best of your ability." }
+
+SOLANA_RPC_URL = { type = "string", default = "https://api.mainnet-beta.solana.com" }

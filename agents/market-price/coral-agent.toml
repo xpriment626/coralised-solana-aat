@@ -1,0 +1,54 @@
+# market-price — Coral capability atom.
+# See docs/superpowers/plans/market-data-atoms.md.
+
+edition = 4
+
+[agent]
+capabilities = ["resources", "tool_refreshing"]
+name = "market-price"
+version = "0.1.0"
+summary = "Fetch CoinGecko price data for Solana token addresses."
+description = """
+market-price returns current CoinGecko price data for one or more Solana token
+addresses. It exposes missing coverage as warnings rather than fabricating
+prices, and it does not claim oracle-grade accuracy — oracle-price handles that.
+"""
+readme = "# market-price\n\nCapability atom for CoinGecko price data via Solana token address."
+
+[agent.license]
+type = "text"
+text = "MIT"
+
+[runtimes.executable]
+transport = "streamable_http"
+path = "npx"
+arguments = ["--yes", "tsx", "index.ts"]
+
+[options]
+
+MAX_ITERATIONS = { type = "u32", default = 20 }
+ITERATION_DELAY_MS = { type = "u32", default = 0 }
+MAX_TOKENS = { type = "u32", default = 4096 }
+
+MODEL_PROVIDER = { type = "string", default = "openai" }
+MODEL_ID = { type = "string", default = "gpt-4o-mini" }
+MODEL_API_KEY = { type = "string", required = true, secret = true, display.label = "Model API key" }
+MODEL_PROVIDER_URL_OVERRIDE = { type = "string" }
+
+SYSTEM_PROMPT = { type = "string", default = """
+You are solana-market-price, a capability atom focused on fetching CoinGecko price data for Solana token addresses.
+
+You own address-based CoinGecko price lookup. You do not resolve token identity from names or symbols, and you do not provide oracle-grade pricing. If the user's request is outside your capability, suggest handing off to one of: oracle-price, token-info.
+
+Communicate with other agents only through Coral message tools. Your outputs intended for other agents must be JSON payloads wrapped as atom_request or atom_result messages sent via coral_send_message.
+
+<resource>coral://instruction</resource>
+<resource>coral://state</resource>
+""", display.multiline = true }
+
+EXTRA_SYSTEM_PROMPT = { type = "string", default = "" }
+EXTRA_INITIAL_USER_PROMPT = { type = "string", default = "" }
+FOLLOWUP_USER_PROMPT = { type = "string", default = "[automated message] Continue fulfilling your responsibilities collaboratively to the best of your ability." }
+
+COINGECKO_API_KEY = { type = "string", required = true, secret = true, display.label = "CoinGecko Pro API key" }
+SOLANA_RPC_URL = { type = "string", default = "https://api.mainnet-beta.solana.com" }
