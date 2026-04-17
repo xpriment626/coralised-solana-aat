@@ -1,5 +1,5 @@
-export interface AgentKitPluginSelection {
-  profileName: string;
+export interface AgentKitAtomSelection {
+  atomName: string;
   plugins: string[];
   allowedActions: string[];
 }
@@ -10,8 +10,8 @@ export interface ActionFilterRule {
   reason?: string;
 }
 
-export function definePluginSelection(
-  selection: AgentKitPluginSelection
-): AgentKitPluginSelection {
+export function defineAtomSelection(
+  selection: AgentKitAtomSelection
+): AgentKitAtomSelection {
   return selection;
 }

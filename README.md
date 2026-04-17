@@ -14,8 +14,10 @@ That version generated one Coral agent per Solana skill and then added protocol 
 The new architecture keeps the original thesis but changes the ownership boundary:
 
 - SendAI `solana-agent-kit` owns Solana protocol actions.
-- This repo owns Coral coordination, agent profiles, policy middleware, and runtime behavior.
+- This repo owns Coral coordination, capability-atom agents, molecule experiments, policy middleware, and runtime behavior.
 - Skills documentation becomes reference material, not agent identity.
+
+The current experimental question is not production efficiency. It is whether tightly scoped capability agents can be recomposed through Coral into useful workflows without collapsing back into one conventional agent that owns all tools.
 
 ## Target Shape
 
@@ -24,13 +26,21 @@ src/
   runtime/       Coral task loop and MCP coordination runtime
   agent-kit/     SendAI Agent Kit plugin loading, filtering, and tool adaptation
   policies/      approval, simulation, spend, rate-limit, and action-risk gates
-  profiles/      workflow-oriented agent profiles
+  atoms/         typed capability-atom manifests
+  molecules/     typed molecule experiment manifests
 
 agents/
-  market-intelligence/
-    README.md    first read-only profile scaffold
+  market-trends/
+  token-info/
+  market-price/
+  oracle-price/
+  wallet-assets/
+
+molecules/
+  market-signal/
 
 docs/
+  experiments/capability-atoms/
   debugging-logs/
     postmortem-skills-first-architecture.md
 ```
@@ -39,11 +49,12 @@ docs/
 
 1. Archive and tag the old implementation.
 2. Remove the generated skill-first agent surface from the active tree.
-3. Scaffold the new runtime, Agent Kit, policy, and profile boundaries.
-4. Build one read-only `market-intelligence` prototype using curated Agent Kit actions.
-5. Add wallet/policy middleware before reintroducing signing or transaction-submitting actions.
-6. Expand by workflow profiles, not by one-agent-per-protocol generation.
+3. Inventory Agent Kit actions into smallest viable capability atoms.
+4. Scaffold atom agents and one molecule experiment.
+5. Pause for manual review before choosing whether to implement atoms, runtime, or a hybrid vertical slice first.
+6. Add wallet/policy middleware before reintroducing signing or transaction-submitting actions.
+7. Compare atom/molecule behavior against a conventional single-agent baseline only after the Coral pattern has been honestly tested.
 
 ## Current Status
 
-Only the rewrite skeleton is active. There are no runnable Coral agents yet.
+Only the atom/molecule rewrite skeleton is active. There are no runnable Coral agents yet.
