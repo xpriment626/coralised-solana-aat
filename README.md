@@ -40,7 +40,7 @@ molecules/
   market-signal/
 
 docs/
-  experiments/capability-atoms/
+  decomposition/capability-atoms/
   debugging-logs/
     postmortem-skills-first-architecture.md
 ```
