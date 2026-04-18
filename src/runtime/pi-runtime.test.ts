@@ -4,7 +4,11 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 import type { AgentTool } from "@mariozechner/pi-agent-core";
-import { buildIterationPayload, prepareFirstTurn } from "./pi-runtime.js";
+import {
+  buildIterationPayload,
+  createToolReadmitHandler,
+  prepareFirstTurn,
+} from "./pi-runtime.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -171,5 +175,118 @@ describe("buildIterationPayload: per-turn_end debug capture", () => {
       nowIso: "x",
     });
     assert.equal(payload.systemPrompt, "");
+  });
+});
+
+describe("createToolReadmitHandler: iter-N>0 tool-set re-expansion", () => {
+  // Context for this block: attempt 2 filters the three coral_wait_* primitives
+  // from the first-turn tool list so the model cannot latch on to a stale
+  // currentUnixTime before seeing the pre-loaded coral://state. That filter is
+  // correct for iter-0 only. Once the atom has made at least one decision based
+  // on state, wait tools are legitimate (and required for peer-wait behavior
+  // in a molecule — fixture-1 predicate 3). This handler mutates the live
+  // runAgentLoop context.tools array on the first `turn_end` so the LLM sees
+  // the full tool list from turn 2 onward.
+  const waitTool = stubTool("coral_wait_for_message");
+  const mentionTool = stubTool("coral_wait_for_mention");
+  const agentWaitTool = stubTool("coral_wait_for_agent");
+  const sendTool = stubTool("coral_send_message");
+  const agentKitTool = stubTool("agentkit_get_coingecko_trending_tokens_action");
+
+  const allTools = [
+    waitTool,
+    mentionTool,
+    agentWaitTool,
+    sendTool,
+    agentKitTool,
+  ];
+  const firstTurnTools = [sendTool, agentKitTool];
+
+  test("first turn_end swaps context.tools to the full tool list", () => {
+    const context = { tools: [...firstTurnTools] };
+    const handler = createToolReadmitHandler({ allTools, context });
+
+    // Before: waits absent
+    assert.ok(!context.tools.some((t) => t.name === "coral_wait_for_message"));
+
+    handler({ type: "turn_end" });
+
+    // After: waits present, other tools preserved
+    const names = context.tools.map((t) => t.name);
+    assert.ok(
+      names.includes("coral_wait_for_message"),
+      "coral_wait_for_message must be readmitted on first turn_end"
+    );
+    assert.ok(
+      names.includes("coral_wait_for_mention"),
+      "coral_wait_for_mention must be readmitted on first turn_end"
+    );
+    assert.ok(
+      names.includes("coral_wait_for_agent"),
+      "coral_wait_for_agent must be readmitted on first turn_end"
+    );
+    assert.ok(names.includes("coral_send_message"));
+    assert.ok(names.includes("agentkit_get_coingecko_trending_tokens_action"));
+  });
+
+  test("non-turn_end events do not mutate context.tools", () => {
+    const context = { tools: [...firstTurnTools] };
+    const handler = createToolReadmitHandler({ allTools, context });
+
+    handler({ type: "turn_start" });
+    handler({ type: "message_start" });
+    handler({ type: "tool_execution_start" });
+
+    assert.deepEqual(
+      context.tools.map((t) => t.name),
+      firstTurnTools.map((t) => t.name),
+      "no swap should happen before a turn completes"
+    );
+  });
+
+  test("subsequent turn_ends are idempotent (tools remain full list, no duplication)", () => {
+    const context = { tools: [...firstTurnTools] };
+    const handler = createToolReadmitHandler({ allTools, context });
+
+    handler({ type: "turn_end" });
+    const afterFirst = context.tools;
+
+    handler({ type: "turn_end" });
+    handler({ type: "turn_end" });
+
+    assert.strictEqual(
+      context.tools,
+      afterFirst,
+      "later turn_ends must not rebind context.tools to a new array"
+    );
+    assert.equal(
+      context.tools.length,
+      allTools.length,
+      "no duplicate entries after repeated turn_end events"
+    );
+  });
+
+  test("independent handlers maintain independent swap state", () => {
+    const ctxA = { tools: [...firstTurnTools] };
+    const ctxB = { tools: [...firstTurnTools] };
+    const handlerA = createToolReadmitHandler({
+      allTools,
+      context: ctxA,
+    });
+    const handlerB = createToolReadmitHandler({
+      allTools,
+      context: ctxB,
+    });
+
+    handlerA({ type: "turn_end" });
+
+    assert.ok(ctxA.tools.some((t) => t.name === "coral_wait_for_message"));
+    assert.ok(
+      !ctxB.tools.some((t) => t.name === "coral_wait_for_message"),
+      "handler B must not be affected by handler A's swap"
+    );
+
+    handlerB({ type: "turn_end" });
+    assert.ok(ctxB.tools.some((t) => t.name === "coral_wait_for_message"));
   });
 });
