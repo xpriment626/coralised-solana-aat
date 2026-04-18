@@ -266,6 +266,35 @@ describe("createToolReadmitHandler: iter-N>0 tool-set re-expansion", () => {
     );
   });
 
+  test("mutation is in place so runAgentLoop's spread-cloned context sees the swap", () => {
+    // runAgentLoop begins with: currentContext = { ...context, messages: [...] }
+    // That spread copies the REFERENCE to context.tools. If the handler
+    // reassigns context.tools = newArray, currentContext.tools still points
+    // at the old array and the LLM never sees the swap. This test models
+    // exactly that cloning pattern to catch a reassign regression.
+    const outer = { tools: [...firstTurnTools] };
+    const handler = createToolReadmitHandler({
+      allTools,
+      context: outer,
+    });
+
+    // Simulate runAgentLoop's one-time spread BEFORE the first turn_end.
+    const looperContext: { tools?: AgentTool<any>[] } = { ...outer };
+
+    handler({ type: "turn_end" });
+
+    const looperNames = (looperContext.tools ?? []).map((t) => t.name);
+    assert.ok(
+      looperNames.includes("coral_wait_for_message"),
+      "the spread-cloned context must observe the readmit — handler must mutate in place, not reassign"
+    );
+    assert.strictEqual(
+      looperContext.tools,
+      outer.tools,
+      "in-place mutation must keep both references pointing at the same array"
+    );
+  });
+
   test("independent handlers maintain independent swap state", () => {
     const ctxA = { tools: [...firstTurnTools] };
     const ctxB = { tools: [...firstTurnTools] };
