@@ -1,0 +1,316 @@
+{
+  "run_id": "market-signal-pairwise-cd34fd31-7067-473c-b799-ab68e1138e41",
+  "date": "2026-04-17",
+  "level": "pairwise",
+  "template": "market-signal-pairwise",
+  "console_compatible": true,
+  "agents": [
+    "trends",
+    "info"
+  ],
+  "task": {
+    "seed": {
+      "kind": "atom_request",
+      "task_id": "pairwise-smoke",
+      "from": "puppet",
+      "to": "trends",
+      "capability": "market-trends",
+      "input": {
+        "ask": "What tokens are trending on Solana right now? Hand off promising candidates to token-info for metadata."
+      }
+    }
+  },
+  "observed_messages": [
+    {
+      "id": "83ab9c1d-373f-4d7a-9854-f6fd73d2ccdc",
+      "sender": "puppet"
+    }
+  ],
+  "tool_calls": [
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_trending_tokens_action",
+      "iteration": 0,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_trending_tokens_action",
+      "iteration": 1,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_trending_pools_action",
+      "iteration": 2,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_top_gainers",
+      "iteration": 3,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_latest_pools",
+      "iteration": 3,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_trending_tokens_action",
+      "iteration": 4,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_trending_pools_action",
+      "iteration": 5,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_top_gainers",
+      "iteration": 6,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_latest_pools",
+      "iteration": 6,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_trending_tokens_action",
+      "iteration": 7,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_trending_pools_action",
+      "iteration": 8,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_top_gainers",
+      "iteration": 9,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_latest_pools",
+      "iteration": 9,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_trending_tokens_action",
+      "iteration": 10,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_trending_pools_action",
+      "iteration": 11,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_top_gainers",
+      "iteration": 12,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_latest_pools",
+      "iteration": 12,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_trending_tokens_action",
+      "iteration": 13,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_trending_pools_action",
+      "iteration": 14,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_top_gainers",
+      "iteration": 15,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_latest_pools",
+      "iteration": 15,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_trending_tokens_action",
+      "iteration": 16,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_trending_pools_action",
+      "iteration": 17,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_top_gainers",
+      "iteration": 18,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_latest_pools",
+      "iteration": 18,
+      "finalized": false
+    },
+    {
+      "agent": "trends",
+      "toolName": "agentkit_get_coingecko_trending_tokens_action",
+      "iteration": 19,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 0,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 1,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 2,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 3,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 4,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 5,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 6,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 7,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 8,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 9,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 10,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 11,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 12,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 13,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 14,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 15,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 16,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 17,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 18,
+      "finalized": false
+    },
+    {
+      "agent": "info",
+      "toolName": "coral_wait_for_message",
+      "iteration": 19,
+      "finalized": false
+    }
+  ],
+  "success": false,
+  "failure_modes": [
+    "message_non_execution",
+    "handoff_missing"
+  ],
+  "notes": [
+    "seed agent: puppet",
+    "observed atom_result: false"
+  ]
+}

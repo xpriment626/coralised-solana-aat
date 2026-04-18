@@ -1,0 +1,10 @@
+{
+  "kind": "atom_request",
+  "task_id": "pairwise-smoke",
+  "from": "puppet",
+  "to": "trends",
+  "capability": "market-trends",
+  "input": {
+    "ask": "What tokens are trending on Solana right now? Hand off promising candidates to token-info for metadata."
+  }
+}
