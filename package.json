@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "typecheck": "tsc --noEmit",
-    "pairwise": "tsx scripts/run-pairwise.ts"
+    "pairwise": "tsx scripts/run-pairwise.ts",
+    "test": "node --import tsx --test --test-reporter=spec 'src/**/*.test.ts'"
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.3.22",
