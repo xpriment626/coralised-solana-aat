@@ -61,6 +61,39 @@ export async function prepareFirstTurn(
   return { systemPrompt, instructionResource, stateResource, firstTurnTools };
 }
 
+export interface IterationPayload {
+  iteration: number;
+  systemPrompt: string;
+  event: unknown;
+  ts: string;
+}
+
+export interface BuildIterationPayloadInput {
+  iteration: number;
+  /** Structural view of a pi-mono Agent; real Agent satisfies this. */
+  agent: { state: { systemPrompt?: string } };
+  event: unknown;
+  /** Injectable clock — defaults to new Date().toISOString() */
+  nowIso?: string;
+}
+
+/**
+ * Build the per-turn_end debug-artifact payload. Captures the current system
+ * prompt so a live run produces byte-diffable evidence against fixture-1's
+ * trends-iter-0.json `systemPrompt` field. Predicate 1 is otherwise only
+ * inferable from downstream behavior (tool choice + input token count).
+ */
+export function buildIterationPayload(
+  input: BuildIterationPayloadInput
+): IterationPayload {
+  return {
+    iteration: input.iteration,
+    systemPrompt: input.agent.state.systemPrompt ?? "",
+    event: input.event,
+    ts: input.nowIso ?? new Date().toISOString(),
+  };
+}
+
 export interface RunAtomConfig {
   atomName: string;
   localTools: AgentTool<any>[];
@@ -137,11 +170,7 @@ export async function runAtom(config: RunAtomConfig): Promise<void> {
         sessionId: env.CORAL_SESSION_ID,
         iteration,
         secretsFromEnv: secrets,
-        payload: {
-          iteration,
-          event: ev,
-          ts: new Date().toISOString(),
-        },
+        payload: buildIterationPayload({ iteration, agent, event: ev }),
       });
     });
 

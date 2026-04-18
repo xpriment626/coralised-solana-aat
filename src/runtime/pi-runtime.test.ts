@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 import type { AgentTool } from "@mariozechner/pi-agent-core";
-import { prepareFirstTurn } from "./pi-runtime.js";
+import { buildIterationPayload, prepareFirstTurn } from "./pi-runtime.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -127,5 +127,49 @@ describe("fixture-1 predicate 1.b: pi-mono atom-template pre-turn preparation", 
       firstTurnNames.includes("coral_send_message"),
       "coral_send_message stays in the tool list (the runtime gates it elsewhere; it is not a wait-tool)"
     );
+  });
+});
+
+describe("buildIterationPayload: per-turn_end debug capture", () => {
+  test("records iteration, systemPrompt from agent.state, event, and clock timestamp", () => {
+    const event = {
+      type: "turn_end",
+      message: { role: "assistant", content: [] },
+    };
+    const payload = buildIterationPayload({
+      iteration: 3,
+      agent: { state: { systemPrompt: "assembled-prompt-xyz" } },
+      event,
+      nowIso: "2026-04-18T11:06:59.688Z",
+    });
+    assert.deepEqual(payload, {
+      iteration: 3,
+      systemPrompt: "assembled-prompt-xyz",
+      event,
+      ts: "2026-04-18T11:06:59.688Z",
+    });
+  });
+
+  test("captures the fixture systemPrompt verbatim when the agent carries it", () => {
+    const payload = buildIterationPayload({
+      iteration: 1,
+      agent: { state: { systemPrompt: fixture.systemPrompt } },
+      event: { type: "turn_end" },
+      nowIso: "x",
+    });
+    // This is the byte-diff bar for live runs: if a fresh iter-1 payload is
+    // dumped with this same structure, the systemPrompt field will equal
+    // fixture.systemPrompt when the runtime is working correctly.
+    assert.equal(payload.systemPrompt, fixture.systemPrompt);
+  });
+
+  test("absent systemPrompt becomes empty string, not undefined", () => {
+    const payload = buildIterationPayload({
+      iteration: 1,
+      agent: { state: {} },
+      event: { type: "turn_end" },
+      nowIso: "x",
+    });
+    assert.equal(payload.systemPrompt, "");
   });
 });
