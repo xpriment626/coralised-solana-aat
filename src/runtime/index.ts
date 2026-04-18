@@ -1,4 +1,5 @@
 export * from "./coral-runtime.js";
+export * from "./coral-mcp.js";
 export * from "./atom-template.js";
 export * from "./env.js";
 export * from "./tools.js";
