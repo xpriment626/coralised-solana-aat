@@ -1,3 +1,10 @@
-import { bootstrapAtom } from "../../src/atoms/bootstrap.js";
+import { runAtom } from "pi-coral-agent";
 
-bootstrapAtom({ atomName: "wallet-assets" });
+import { buildWalletAssetsTools } from "./tools.js";
+
+const { tools, secretsFromEnv } = buildWalletAssetsTools();
+
+runAtom({ tools, secretsFromEnv }).catch((err) => {
+  console.error("[wallet-assets] fatal:", err);
+  process.exit(1);
+});

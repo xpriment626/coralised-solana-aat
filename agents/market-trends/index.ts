@@ -1,3 +1,10 @@
-import { bootstrapAtom } from "../../src/atoms/bootstrap.js";
+import { runAtom } from "pi-coral-agent";
 
-bootstrapAtom({ atomName: "market-trends" });
+import { buildMarketTrendsTools } from "./tools.js";
+
+const { tools, secretsFromEnv } = buildMarketTrendsTools();
+
+runAtom({ tools, secretsFromEnv }).catch((err) => {
+  console.error("[market-trends] fatal:", err);
+  process.exit(1);
+});

@@ -1,3 +1,10 @@
-import { bootstrapAtom } from "../../src/atoms/bootstrap.js";
+import { runAtom } from "pi-coral-agent";
 
-bootstrapAtom({ atomName: "token-info" });
+import { buildTokenInfoTools } from "./tools.js";
+
+const { tools, secretsFromEnv } = buildTokenInfoTools();
+
+runAtom({ tools, secretsFromEnv }).catch((err) => {
+  console.error("[token-info] fatal:", err);
+  process.exit(1);
+});

@@ -1,3 +1,10 @@
-import { bootstrapAtom } from "../../src/atoms/bootstrap.js";
+import { runAtom } from "pi-coral-agent";
 
-bootstrapAtom({ atomName: "oracle-price" });
+import { buildOraclePriceTools } from "./tools.js";
+
+const { tools, secretsFromEnv } = buildOraclePriceTools();
+
+runAtom({ tools, secretsFromEnv }).catch((err) => {
+  console.error("[oracle-price] fatal:", err);
+  process.exit(1);
+});

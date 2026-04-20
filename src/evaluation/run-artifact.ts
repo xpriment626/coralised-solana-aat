@@ -2,7 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { z } from "zod";
 
-import { redactSecrets } from "../runtime/debug.js";
+import { redactSecrets } from "pi-coral-agent";
 
 export const FAILURE_MODE_LABELS = [
   "runtime_connection_failure",

@@ -1,8 +1,8 @@
 import type { AgentTool } from "@mariozechner/pi-agent-core";
+import { redactSecrets, sanitizeJsonSchema } from "pi-coral-agent";
 import { z } from "zod";
 import { zodToJsonSchema } from "zod-to-json-schema";
 
-import { redactSecrets } from "../runtime/debug.js";
 import {
   errorEnvelope,
   normalizeAgentKitResult,
@@ -59,7 +59,9 @@ export function adaptAgentKitActions(params: AdaptParams): AgentTool<any>[] {
     const plugin = params.pluginByAction?.[actionName] ?? "unknown";
     const toolName = `agentkit_${action.name.toLowerCase()}`;
     const zodSchema = action.schema ?? z.object({});
-    const jsonSchema = zodToJsonSchema(zodSchema, { target: "openApi3" });
+    const jsonSchema = sanitizeJsonSchema(
+      zodToJsonSchema(zodSchema, { target: "openApi3" })
+    );
 
     const tool: AgentTool<any> = {
       name: toolName,
